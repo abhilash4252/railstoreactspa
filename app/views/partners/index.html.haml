@@ -1,0 +1,18 @@
+%h1 List of Partners
+
+%table.table
+  %thead
+    %tr
+      %th #
+      %th Name
+      %th Action
+  %tbody
+    - @partners.each do |partner|
+      %tr
+        %td
+          = partner.id
+        %td
+          =partner.name
+        %td
+          = link_to "Show", show_partner_path(partner)
+

@@ -1,0 +1,18 @@
+%h1 List of Audience
+
+%table.table
+  %thead
+    %tr
+      %th #
+      %th Name
+      %th Action
+  %tbody
+    - @audience.each do |audience|
+      %tr
+        %td
+          = audience.id
+        %td
+          =audience.name
+        %td
+          = link_to "Dummy Link", "#"
+
