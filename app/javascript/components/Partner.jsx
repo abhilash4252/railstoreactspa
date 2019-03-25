@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import TableData from "./common/TableData.jsx";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import PartnerDetails from "./partners/partner.jsx";
 
 class Partners extends React.Component {
   constructor(props) {
@@ -26,29 +29,19 @@ class Partners extends React.Component {
   render() {
     return (
       <div>
-        <h1>List of Partners</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.partners.map(partner => {
-              return (
-                <tr>
-                  <td>{partner.id}</td>
-                  <td>{partner.name}</td>
-                  <td>
-                    <a href={"/partners/" + partner.id}>Show</a>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <Route
+          path={["/", "/partners"]}
+          exact
+          render={props => (
+            <TableData {...props} data={this.state.partners} type="partners" />
+          )}
+        />
+        <Route
+          path="/partners/:id"
+          render={props => (
+            <PartnerDetails {...props} partners={this.state.partners} />
+          )}
+        />
       </div>
     );
   }

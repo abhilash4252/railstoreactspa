@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'audience/index'
-  get  '/partners/:id', as: 'show_partner', to: 'partners#show'
-  get  '/partners', as: 'all_partners', to: redirect('/')
+  get '/audience', to: 'application#home' 
+  get  '/partners/:id', to: 'application#home'
+  get  '/partners', to: redirect('/')
   root 'application#home'
 
   namespace :api, defaults: { format: 'json' }  do
-    get '/partners', to: 'partners#index'
-  end
+    get '/partners', to: 'partners#all_partners'
+    get '/audience', to: 'audience#all_audience'
+  end 
 end
